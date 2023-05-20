@@ -18,7 +18,7 @@ class Board:
     def print_grid(self, grid):
         for i in range(0, len(grid)):
             for j in range(0, len(grid[i])):
-                if grid[i][j] == EMPTY :
+                if grid[i][j] == EMPTY:
                     print("*", end=" \t")
                 elif grid[i][j] == RED:
                     print("R", end=" \t")
@@ -30,10 +30,10 @@ class Board:
         for i in range(0, len(grid)):
             for j in range(0, len(grid[i])):
                 if grid[i][j] == (255, 255, 255):
-                    grid[i][j] = EMPTY 
+                    grid[i][j] = EMPTY
                 elif grid[i][j][0] > 200:
                     grid[i][j] = RED
-                elif grid[i][j][0] > 50:
+                elif grid[i][j][2] > 150:
                     grid[i][j] = BLUE
         return grid
 
@@ -68,7 +68,7 @@ class Board:
     def _get_grid(self):
         cropedImage = self._capture_image()
         pixels = self._convert_image_to_grid(cropedImage)
-        #cropedImage.show()
+        # cropedImage.show()
         grid = self._transpose_grid(pixels)
         return grid
 
@@ -91,7 +91,6 @@ class Board:
             if (column==6):
                 column=5
                 addedvalue=80
-            print(self._get_grid_cordinates()[column][1] + LEFT+addedvalue)
             pyautogui.click(
             self._get_grid_cordinates()[column][1] + LEFT+addedvalue,
             self._get_grid_cordinates()[column][0] + TOP,
