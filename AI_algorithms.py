@@ -2,7 +2,6 @@
 # coding: utf-8
 
 # In[143]:
-
 #### initial state######
 ###### noteeeeee######
 ##### 1 is the AGENT
@@ -176,6 +175,8 @@ def evalLine(line, player, opponent):
         return 5 
     elif player_count == 2 and empty_count == 2: 
         return 2  
+    elif opponent_count==4 and empty_count==0:
+        return -1000
     elif opponent_count == 3 and empty_count == 1:  # If opponent has 3-in-a-row column/row/diagonal gives heuristic -8
         return -4 
     elif opponent_count == 2 and empty_count == 2:
@@ -276,7 +277,7 @@ def alphaBetaPruning(Board, depth,Player,colindex, alpha=float('-inf'), beta=flo
         return 10000000+depth,Board,colindex
     ComputerWins=check_goal_test(Board,2)
     if(ComputerWins==2):
-        return -10000000+depth,Board,colindex
+        return -10000000-depth,Board,colindex
     if(depth==0):
         return UtilityOfBoard(Board,Player,opponent),Board,colindex
     if(Player==1):
